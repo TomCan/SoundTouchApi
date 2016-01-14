@@ -1,0 +1,11 @@
+{
+    "name": "tomcan/soundtouch",
+    "autoload": {
+        "psr-0" : {
+            "TomCan\\SoundTouch" : "src"
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "~6.0"
+    }
+}
