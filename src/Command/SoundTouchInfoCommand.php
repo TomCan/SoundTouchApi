@@ -3,6 +3,8 @@
 namespace TomCan\SoundTouch\Command;
 
 
+use TomCan\SoundTouch\Response\SoundTouchInfoResponse;
+
 class SoundTouchInfoCommand extends SoundTouchCommand
 {
 
@@ -12,6 +14,10 @@ class SoundTouchInfoCommand extends SoundTouchCommand
 
         parent::__construct('GET', 'info');
 
+    }
+
+    public function createResponse($responseText) {
+        return new SoundTouchInfoResponse($responseText);
     }
 
 }

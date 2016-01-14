@@ -14,12 +14,21 @@ class SoundTouchResponse
 
     private $success = false;
 
+    private $status;
+    private $errors;
+
     private $responseText;
     private $responseObject;
 
     public function __construct($responseText) {
-        $this->responseText = $responseText;
-        $this->parseResponse();
+
+        if ($responseText == "") {
+            $this->success = false;
+        } else {
+            $this->success = true;
+            $this->responseText = $responseText;
+            $this->parseResponse();
+        }
     }
 
     /**
@@ -47,7 +56,23 @@ class SoundTouchResponse
     }
 
     public function parseResponse() {
+
         $this->responseObject = new \SimpleXMLElement($this->responseText);
+
+        // check status
+        if ($this->responseObject->status) $this->status = (string)$this->responseObject->status;
+
+        if ($this->responseObject->errors) {
+            foreach ($this->responseObject->errors as $error) {
+                $this->errors[] = array(
+                    "value" => (string)$error->attributes()->value,
+                    "name" => (string)$error->attributes()->name,
+                    "severity" => (string)$error->attributes()->severity,
+                    "content" => (string)$error,
+                );
+            }
+        }
+
     }
 
     /**
@@ -58,5 +83,20 @@ class SoundTouchResponse
         return $this->responseObject;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getErrors()
+    {
+        return $this->errors;
+    }
 
 }

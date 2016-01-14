@@ -19,20 +19,31 @@ class SoundTouchClient
 
     public function Send(SoundTouchCommand $command) {
 
+        $command->preparePayload();
+
         $httpClient = new \GuzzleHttp\Client(array(
             'base_uri' => 'http://' . $this->target['ip'] . ':8090/'
         ));
 
-        if ($command->getMethod() == "POST") {
-            $httpResponse = $httpClient->post($command->getPath(), array(
-                'body' => $command->getPayload()
-            ));
-        } else {
-            // use GET request
-            $httpResponse = $httpClient->get($command->getPath());
+        try {
+
+            if ($command->getMethod() == "POST") {
+                $httpResponse = $httpClient->post($command->getPath(), array(
+                    'body' => $command->getPayload()
+                ));
+            } else {
+                // use GET request
+                $httpResponse = $httpClient->get($command->getPath());
+            }
+
+            $response = $command->createResponse($httpResponse->getBody()->getContents());
+
+        } catch (Exception $e) {
+
+            $response = new SoundTouchResponse("");
+
         }
 
-        $response = new SoundTouchInfoResponse($httpResponse->getBody()->getContents());
         return $response;
 
     }

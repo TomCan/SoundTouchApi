@@ -9,13 +9,15 @@
 namespace TomCan\SoundTouch\Command;
 
 
+use TomCan\SoundTouch\Response\SoundTouchResponse;
+
 class SoundTouchCommand
 {
 
     private $method;
     private $path;
 
-    private $payload;
+    protected $payload;
     private $responseText;
     private $responseObject;
 
@@ -24,6 +26,15 @@ class SoundTouchCommand
         $this->method = $method;
         $this->path = $path;
 
+    }
+
+    public function preparePayload() {
+        // by default, don't do jack
+        return $this;
+    }
+
+    public function createResponse($responseText) {
+        return new SoundTouchResponse($responseText);
     }
 
     /**
