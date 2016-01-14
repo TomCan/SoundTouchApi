@@ -13,6 +13,7 @@ class SoundTouchNowPlayingResponse extends SoundTouchResponse
 {
 
     private $deviceID;
+    private $source;
 
     private $track;
     private $album;
@@ -30,6 +31,7 @@ class SoundTouchNowPlayingResponse extends SoundTouchResponse
         parent::parseResponse();
 
         $this->deviceID = (string)$this->getResponseObject()->attributes()->deviceID;
+        $this->source = (string)$this->getResponseObject()->attributes()->source;
 
         $this->contentItem = new \stdClass();
         if ($this->getResponseObject()->ContentItem) {
@@ -52,6 +54,94 @@ class SoundTouchNowPlayingResponse extends SoundTouchResponse
             $this->artImageStatus = (string)$this->getResponseObject()->art->attributes()->artImageStatus;
         }
 
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDeviceID()
+    {
+        return $this->deviceID;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSource()
+    {
+        return $this->source;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTrack()
+    {
+        return $this->track;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAlbum()
+    {
+        return $this->album;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStationName()
+    {
+        return $this->stationName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlayStatus()
+    {
+        return $this->playStatus;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStationLocation()
+    {
+        return $this->stationLocation;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getArt()
+    {
+        return $this->art;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getArtImageStatus()
+    {
+        return $this->artImageStatus;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getContentItem()
+    {
+        return $this->contentItem;
     }
 
 }
