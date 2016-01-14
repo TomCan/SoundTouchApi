@@ -47,8 +47,10 @@ class SoundTouchNowPlayingResponse extends SoundTouchResponse
         $this->playStatus = (string)$this->getResponseObject()->playStatus;
         $this->description = (string)$this->getResponseObject()->description;
 
-        $this->art = (string)$this->getResponseObject()->art;
-        $this->artImageStatus = (string)$this->getResponseObject()->art->attributes()->artImageStatus;
+        if ($this->getResponseObject()->art) {
+            $this->art = (string)$this->getResponseObject()->art;
+            $this->artImageStatus = (string)$this->getResponseObject()->art->attributes()->artImageStatus;
+        }
 
     }
 
