@@ -59,7 +59,7 @@ class SoundTouchVolumeGetResponse extends SoundTouchResponse
     /**
      * @return boolean
      */
-    public function getMuted()
+    public function isMuted()
     {
         return $this->muted;
     }
