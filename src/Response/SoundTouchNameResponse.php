@@ -9,15 +9,11 @@
 namespace TomCan\SoundTouch\Response;
 
 
-class SoundTouchNameResponse extends SoundTouchResponse
+class SoundTouchNameResponse extends SoundTouchInfoResponse
 {
-
-    private $name;
-
-    public function parseResponse() {
-
-        parent::parseResponse();
-
-    }
-
+    /*
+        the POST /name command actually returns the same as the info command
+        This wrapper is only provided for code/naming consistency.
+        And who knows they might change the behaviour in future versions of the API ;)
+     */
 }
