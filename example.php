@@ -1,12 +1,7 @@
 <?php
 
-include('src/SoundTouchClient.php');
-include('src/Command/SoundTouchCommand.php');
-include('src/Response/SoundTouchResponse.php');
-include('src/Command/SoundTouchInfoCommand.php');
-include('src/Response/SoundTouchInfoResponse.php');
-include('src/Command/SoundTouchNameCommand.php');
-include('src/Response/SoundTouchNameResponse.php');
+include('example-loader.php');
+
 
     include('vendor/autoload.php');
 
@@ -16,9 +11,71 @@ include('src/Response/SoundTouchNameResponse.php');
 
     $command = new \TomCan\SoundTouch\Command\SoundTouchInfoCommand();
     $response = $client->send($command);
-    var_dump($response);
+    echo "Name: " . $response->getName() . "\n";
 
-    $command = new \TomCan\SoundTouch\Command\SoundTouchNameCommand();
-    $command->setName("ST10 refter 2 " . time());
+    $member = new stdClass();
+    $member->ip = $response->getIpAddress();
+    $member->mac = $response->getMacAddress();
+
+$command = new \TomCan\SoundTouch\Command\SoundTouchNowPLayingCommand();
+$response = $client->send($command);
+var_dump($response->isSuccess(), $response->getSource());
+
+$command = new \TomCan\SoundTouch\Command\SoundTouchKeyCommand();
+$command->setValue(\TomCan\SoundTouch\Constants\KeyValue::PRESET_1);
+$command->setState(\TomCan\SoundTouch\Constants\KeyState::PRESS);
+$response = $client->send($command);
+var_dump($response->isSuccess());
+
+$command = new \TomCan\SoundTouch\Command\SoundTouchKeyCommand();
+$command->setValue(\TomCan\SoundTouch\Constants\KeyValue::PRESET_1);
+$command->setState(\TomCan\SoundTouch\Constants\KeyState::RELEASE);
+$response = $client->send($command);
+var_dump($response->isSuccess());
+
+sleep(10);
+
+$command = new \TomCan\SoundTouch\Command\SoundTouchNowPLayingCommand();
+$response = $client->send($command);
+var_dump($response->isSuccess(), $response->getSource());
+
+
+/*
+$command = new \TomCan\SoundTouch\Command\SoundTouchSelectCommand();
+$command->setSource(\TomCan\SoundTouch\Constants\Source::STANDBY);
+$response = $client->send($command);
+var_dump($response);
+*/
+
+$command = new \TomCan\SoundTouch\Command\SoundTouchKeyCommand();
+$command->setValue(\TomCan\SoundTouch\Constants\KeyValue::POWER);
+$command->setState(\TomCan\SoundTouch\Constants\KeyState::PRESS);
+$response = $client->send($command);
+var_dump($response->isSuccess());
+
+$command = new \TomCan\SoundTouch\Command\SoundTouchKeyCommand();
+$command->setValue(\TomCan\SoundTouch\Constants\KeyValue::POWER);
+$command->setState(\TomCan\SoundTouch\Constants\KeyState::RELEASE);
+$response = $client->send($command);
+var_dump($response->isSuccess());
+
+$command = new \TomCan\SoundTouch\Command\SoundTouchNowPLayingCommand();
+$response = $client->send($command);
+var_dump($response->isSuccess());
+
+/*
+
+    $command = new \TomCan\SoundTouch\Command\SoundTouchZoneSetCommand();
+    $command->setMaster($member);
+    $command->setMembers(array($member));
     $response = $client->send($command);
-    var_dump($response);
+    var_dump(
+        $response
+    );
+
+    $command = new \TomCan\SoundTouch\Command\SoundTouchZoneGetCommand();
+    $response = $client->send($command);
+    var_dump(
+        $response
+    );
+*/
