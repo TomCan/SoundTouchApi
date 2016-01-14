@@ -33,4 +33,52 @@ class SoundTouchInfoResponse extends SoundTouchResponse
 
     }
 
+    /**
+     * @return mixed
+     */
+    public function getDeviceID()
+    {
+        return $this->deviceID;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAccount()
+    {
+        return $this->account;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIpAddress()
+    {
+        return $this->ipAddress;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMacAddress()
+    {
+        return $this->macAddress;
+    }
+
 }
