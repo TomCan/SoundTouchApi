@@ -15,7 +15,6 @@ class SoundTouchVolumeGetCommand extends SoundTouchCommand
     }
 
     public function preparePayload() {
-        $this->payload = '<name>' . htmlspecialchars($this->name) . '</name>';
         return $this;
     }
 
