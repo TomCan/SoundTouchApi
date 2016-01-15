@@ -17,9 +17,9 @@ class SoundTouchZoneSetCommand extends SoundTouchCommand
     }
 
     public function preparePayload() {
-        $this->payload = '<zone master="'.$this->master->mac.'" senderIPAddress="'.$this->master->ip.'">';
+        $this->payload = '<zone master="'.$this->master->getMacAddress().'" senderIPAddress="'.$this->master->getIpAddress().'">';
         foreach ($this->members as $member) {
-            $this->payload .= '<member ipaddress="'.$member->ip.'">'.$member->mac.'</member>';
+            $this->payload .= '<member ipaddress="'.$member->getIpAddress().'">'.$member->getMacAddress().'</member>';
         }
         $this->payload .= '</zone>';
 
