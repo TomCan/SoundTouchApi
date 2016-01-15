@@ -10,6 +10,7 @@ class SoundTouchClient
 {
 
     private $target;
+    private $options = array();
 
     public function __construct($target) {
 
@@ -30,10 +31,10 @@ class SoundTouchClient
             if ($command->getMethod() == "POST") {
                 $httpResponse = $httpClient->post($command->getPath(), array(
                     'body' => $command->getPayload()
-                ));
+                ), $this->options);
             } else {
                 // use GET request
-                $httpResponse = $httpClient->get($command->getPath());
+                $httpResponse = $httpClient->get($command->getPath(), $this->options);
             }
 
             $response = $command->createResponse($httpResponse->getBody()->getContents());
@@ -46,6 +47,22 @@ class SoundTouchClient
 
         return $response;
 
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    /**
+     * @param mixed $options
+     */
+    public function setOptions($options)
+    {
+        $this->options = $options;
     }
 
 }
