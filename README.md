@@ -11,8 +11,15 @@ It allows you to integrate control into your own PHP applications.
 
 ## Installation
 
-At present, the library is not yet listed in Packagist, it will be done when it's done.
-For now, the classes aren't even autoloaded (example-loader.php does provide a means to load them automatically, but I wouldn't really call that an autoloader)
+You can install the package through composer:
+```
+# php composer.phar require tomcan/soundtouchapi
+# php composer.phar install
+```
+Then just include the composer autoloader to load it into your project:
+```
+require __DIR__ . '/vendor/autoload.php';
+```
 
 ## Usage
 
@@ -48,11 +55,11 @@ Following commands are currently implemented
 - GET /baseCapabilities
 - GET /sources
 - GET /presets
-
-Hopefully in the near future (completion of these commands will mark the first non-beta release)
-- POST /baseCapabilities (if I figure this one out, API documentation is a bit strange)
 - POST /addZoneSlave
 - POST /removeZoneSlave
+
+This is documented quite strangly in the API docs, not sure if even supported. Not yet implemented.
+- POST /baseCapabilities
 
 In the more distant future
 - Implement Discovery services to locate units
