@@ -2,6 +2,7 @@
     "name": "tomcan/soundtouchapi",
     "description": "SoundTouchApi is a library that allows you to control SoundTouch enabled Bose speakers.",
     "keywords": ["Bose","SoundTouch"],
+    "license": "MIT",
     "autoload": {
         "psr-0" : {
             "TomCan\\SoundTouch" : "src"
