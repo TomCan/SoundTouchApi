@@ -44,14 +44,15 @@ Following commands are currently implemented
 - GET + POST /volume
 - GET /getZone
 - POST /setZone
-
-Hopefully in the near future (completion of these commands will mark the first non-beta release)
 - GET + POST /base
-- GET + POST /baseCapabilities
-- POST /addZoneSlave
-- POST /removeZoneSlave
+- GET /baseCapabilities
 - GET /sources
 - GET /presets
+
+Hopefully in the near future (completion of these commands will mark the first non-beta release)
+- POST /baseCapabilities (if I figure this one out, API documentation is a bit strange)
+- POST /addZoneSlave
+- POST /removeZoneSlave
 
 In the more distant future
 - Implement Discovery services to locate units
