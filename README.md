@@ -42,24 +42,8 @@ echo "The volume is set to " . $response->getActual();
 
 ## Status and TODO
 
-Following commands are currently implemented
-- GET /info
-- POST /key
-- POST /name
-- GET /now_playing
-- POST /select
-- GET + POST /volume
-- GET /getZone
-- POST /setZone
-- GET + POST /base
-- GET /baseCapabilities
-- GET /sources
-- GET /presets
-- POST /addZoneSlave
-- POST /removeZoneSlave
-
-This is documented quite strangly in the API docs, not sure if even supported. Not yet implemented.
-- POST /baseCapabilities
+All the commands documented in the Bose Webservices API documentation have been implemented. 
+(note: unlike documented in the API, /POST baseCapabilities does not exist)
 
 In the more distant future
 - Implement Discovery services to locate units
